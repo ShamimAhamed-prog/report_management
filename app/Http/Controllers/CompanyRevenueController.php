@@ -12,7 +12,13 @@ class CompanyRevenueController extends Controller
 {
     public function index()
     {
-        $company_rev = DB::table('company_revenue')->get();
+        $position_id = Auth::user()->position_id;
+        $company_rev = DB::table('company_revenue')
+            ->leftJoin('company', 'company.id', '=', 'company_revenue.company_id')
+            ->select('company_revenue.*', 'company.name as company_name')
+            ->where('company_revenue.position_id', $position_id)
+            ->get();
+            // dd($company_rev);
         return view('admin.company_revenue.index', compact('company_rev'));
     }
     public function create()

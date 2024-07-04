@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="form-group">
-                                        {!! Form::text('date', null,['class'=> 'form-control datepicker']) !!}
+                                        {!! Form::date('date', null,['class'=> 'form-control datepicker']) !!}
                                         {!! $errors->first('date', '<p class="help-block text-danger">:message</p>') !!}
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
     </div>
 @endsection
 @section('script')
-    <script src="{{ URL::asset('/libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ URL::asset('libs/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript">
         $('.datepicker').datepicker({
             autoclose: true,
