@@ -16,7 +16,8 @@ class UserController extends Controller
         $user = DB::table('users')
         ->leftJoin('position as reporting_position', 'reporting_position.id', '=', 'users.reporting_user')
         ->leftJoin('position as current_position', 'current_position.id', '=', 'users.position_id')
-        ->select('users.*', 'reporting_position.name as reporting_username', 'current_position.name as position_name')
+        ->leftJoin('company', 'company.id', '=', 'users.company_id')
+        ->select('users.*','company.name as company_name','reporting_position.name as reporting_username', 'current_position.name as position_name')
         ->get();
         return view('admin.user.list', compact('user'));
     }

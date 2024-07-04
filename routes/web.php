@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AnswerSubmitController;
 use App\Http\Controllers\AnswerSubmitTypeController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CompanyRevenueController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PositionController;
@@ -51,6 +53,13 @@ Route::middleware(['role'])->group(function () {
     Route::post('/position/store', [PositionController::class, 'store'])->name('store_position');
     Route::put('/position/update/{id}', [PositionController::class, 'update'])->name('update_position');
     Route::get('/position/delete/{id}', [PositionController::class, 'destroy'])->name('delete_position');
+    // ------------------------Company----------------------
+    Route::get('/company/list', [CompanyController::class, 'index'])->name('company_list');
+    Route::get('/company/create', [CompanyController::class, 'create'])->name('create_company');
+    Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])->name('edit_company');
+    Route::post('/company/store', [CompanyController::class, 'store'])->name('store_company');
+    Route::put('/company/update/{id}', [CompanyController::class, 'update'])->name('update_company');
+    Route::get('/company/delete/{id}', [CompanyController::class, 'destroy'])->name('delete_company');
     // ------------------------Question Group----------------------
     Route::get('/question/group/list', [QuestionGroupController::class, 'index'])->name('Qgroup_list');
     Route::get('/question/group/create', [QuestionGroupController::class, 'create'])->name('create_Qgroup');
@@ -99,7 +108,12 @@ Route::middleware(['role'])->group(function () {
     // ------------------------Revenue Report----------------------
     Route::get('/revenue-report/monthly', [ReportManagementController::class, 'RevenueReport'])->name('revenue_report');
 
-
+    Route::get('/company_revenue/list', [CompanyRevenueController::class, 'index'])->name('company_revenue_list');
+    Route::get('/company_revenue/create', [CompanyRevenueController::class, 'create'])->name('create_company_revenue');
+    Route::get('/company_revenue/edit/{id}', [CompanyRevenueController::class, 'edit'])->name('edit_company_revenue');
+    Route::post('/company_revenue/store', [CompanyRevenueController::class, 'store'])->name('store_company_revenue');
+    Route::put('/company_revenue/update/{id}', [CompanyRevenueController::class, 'update'])->name('update_company_revenue');
+    Route::get('/company_revenue/delete/{id}', [CompanyRevenueController::class, 'destroy'])->name('delete_company_revenue');
 
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
